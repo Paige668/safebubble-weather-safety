@@ -67,7 +67,6 @@ You can also access the app from your phone's browser if it's on the same WiFi n
 - **Location Management** - Add, view, categorize important places
 - **Risk Assessment** - Automatic risk level calculation (Low/Medium/High)
 - **Weather Alerts** - Simulated weather warnings and emergency notifications
-- **12-Hour Storm Forecast** - Predictive storm path and impact timeline
 - **Mobile Responsive** - Optimized for emergency use on mobile devices
 - **Focus Mode(Emergency Mode)** - Enhanced visibility for critical situations
 - **Local Storage** - Persistent location data
@@ -100,7 +99,6 @@ You can also access the app from your phone's browser if it's on the same WiFi n
 - [x] Simulated weather alerts (tornado, thunderstorm)
 - [x] Risk level color-coded markers
 - [x] Focus Mode(Emergency Mode) toggle for high-stress UX
-- [x] 12-hour storm forecast simulation
 
 ### State Management & API Integration
 - [x] Custom React hooks for locations & weather
@@ -143,7 +141,6 @@ safebubble-app/
 ### Weather & Alerts
 - `GET /api/weather/alerts` - Get all active weather alerts
 - `GET /api/weather/:lat/:lng` - Get weather for specific coordinates
-- `GET /api/weather/forecast/:lat/:lng` - Get 12-hour storm path prediction
 - `GET /api/emergency/active-alerts` - Get high-priority emergency alerts
 
 ### Location Management
@@ -206,7 +203,7 @@ OPENWEATHER_API_KEY=your_api_key_here
 
 - **Load Time**: < 2 seconds on 3G
 - **Map Rendering**: < 1 second for 50+ locations  
-- **Weather Updates**: Every 5 minutes
+- **Weather Updates**: Every 1 minute
 - **Offline Support**: Core features work offline
 
 ## Next Steps
