@@ -25,7 +25,7 @@
 1. **Open SafeBubble** - Clean, map-centric interface
 2. **Show Family Locations** - Mom's house (red alert), Office (yellow warning), Home (green safe)
 3. **Interactive Map** - Click markers to see real-time risk levels
-4. **Emergency Mode Toggle** - Enhanced visibility for crisis situations
+4. **Focus Mode(Emergency Mode) Toggle** - Enhanced visibility for crisis situations
 5. **Add New Location** - Simple form with auto-geocoding
 6. **Weather Alert Panel** - Real-time tornado and storm warnings
 7. **Mobile Responsive** - Works perfectly on phone during emergencies
@@ -33,7 +33,7 @@
 ### Key Demo Points:
 - **Visual Risk Assessment**: Color-coded locations (Red=Danger, Yellow=Caution, Green=Safe)
 - **Automatic Updates**: Watch risk levels update as weather patterns change  
-- **One-Click Emergency Mode**: Entire interface optimizes for crisis use
+- **One-Click Focus Mode(Emergency Mode)**: Entire interface optimizes for crisis use
 - **Persistent Data**: Locations saved locally, works offline
 
 ## Market Opportunity (30 seconds)
@@ -139,7 +139,7 @@
 - **Pre-load realistic data**: Family locations with varying risk levels
 - **Weather alerts active**: Show tornado warning affecting one location
 - **Mobile view ready**: Demo responsive design
-- **Emergency mode**: Show dramatic visual change
+- **Focus Mode(Emergency Mode)**: Show dramatic visual change
 - **Add location flow**: Demonstrate ease of use
 
 ### Backup Slides:

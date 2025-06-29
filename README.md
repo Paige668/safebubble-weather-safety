@@ -12,7 +12,7 @@ SafeBubble provides a unified platform that combines:
 - **Location Management**: Track important places (home, work, family locations)
 - **Weather Integration**: Real-time weather alerts and radar overlays
 - **Risk Assessment**: Automatic risk level calculation based on proximity to weather events
-- **Emergency Mode**: Optimized interface for high-stress situations
+- **Focus Mode(Emergency Mode)**: Optimized interface for high-stress situations
 
 ## Quick Start
 
@@ -67,7 +67,7 @@ This will start:
 - **Weather Alerts** - Simulated weather warnings and emergency notifications
 - **12-Hour Storm Forecast** - Predictive storm path and impact timeline
 - **Mobile Responsive** - Optimized for emergency use on mobile devices
-- **Emergency Mode** - Enhanced visibility for critical situations
+- **Focus Mode(Emergency Mode)** - Enhanced visibility for critical situations
 - **Local Storage** - Persistent location data
 
 ### Planned Features (Next Phase)
@@ -77,6 +77,10 @@ This will start:
 - **Multi-hazard Support** - Earthquakes, traffic, political unrest data
 - **Advanced Analytics** - Historical risk patterns and predictions
 - **Team Management** - Family/group collaboration features
+
+> **Note:**  
+> This MVP version uses browser localStorage for all data persistence. No backend database is required, making setup and demo frictionless and enabling offline use.  
+> The architecture is designed for easy future migration to a cloud database (e.g., MongoDB, PostgreSQL, Firebase) as needed.
 
 ## Development Checklist
 
@@ -93,7 +97,7 @@ This will start:
 - [x] Add/view/remove family & location points
 - [x] Simulated weather alerts (tornado, thunderstorm)
 - [x] Risk level color-coded markers
-- [x] Emergency mode toggle for high-stress UX
+- [x] Focus Mode(Emergency Mode) toggle for high-stress UX
 - [x] 12-hour storm forecast simulation
 
 ### State Management & API Integration
@@ -105,7 +109,7 @@ This will start:
 ### Demo Readiness
 - [x] Application functional on `localhost:3000`
 - [x] Pre-loaded demo data for showcase
-- [x] Emergency mode demonstration
+- [x] Focus Mode(Emergency Mode) demonstration
 - [x] Risk level changes on proximity simulation
 - [x] Mobile view tested
 
