@@ -141,7 +141,6 @@ safebubble-app/
 ### Weather & Alerts
 - `GET /api/weather/alerts` - Get all active weather alerts
 - `GET /api/weather/:lat/:lng` - Get weather for specific coordinates
-- `GET /api/weather/forecast/:lat/:lng` - Get 12-hour storm path prediction
 - `GET /api/emergency/active-alerts` - Get high-priority emergency alerts
 
 ### Location Management
