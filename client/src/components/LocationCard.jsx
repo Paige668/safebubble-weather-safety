@@ -18,6 +18,9 @@ const LocationCard = ({ location }) => {
     address: location.address,
     type: location.type
   })
+  const [showWeatherDetail, setShowWeatherDetail] = useState(false)
+
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 1024
 
   const getRiskColor = (level) => {
     switch (level) {
@@ -70,7 +73,11 @@ const LocationCard = ({ location }) => {
     try {
       const weather = await fetchWeatherData(location.lat, location.lng)
       setLocationWeather(weather)
-      setShowWeatherModal(true)
+      if (isMobile) {
+        setShowWeatherDetail(true)
+      } else {
+        setShowWeatherModal(true)
+      }
     } catch (error) {
       console.error('Failed to fetch weather:', error)
     } finally {
@@ -618,6 +625,35 @@ const LocationCard = ({ location }) => {
               </button>
             </div>
           </div>
+        </div>
+      )}
+
+      {isMobile && showWeatherDetail && locationWeather && (
+        <div className="mt-3 p-4 bg-white rounded-lg shadow border border-blue-100">
+          {/* Weather details here, similar to your modal content */}
+          <div className="text-center mb-4">
+            <div className="text-4xl mb-2">{getWeatherIcon(locationWeather.condition)}</div>
+            <div className="text-2xl font-bold text-gray-900 mb-1">{locationWeather.temperature}°C</div>
+            <div className="text-lg text-gray-600 mb-2">{getWeatherDescription(locationWeather.condition)}</div>
+          </div>
+          <div className="grid grid-cols-2 gap-4 mb-4">
+            <div className="bg-blue-50 p-2 rounded text-center">
+              <div className="text-xl mb-1">💧</div>
+              <div className="text-xs text-gray-600">Humidity</div>
+              <div className="font-semibold">{locationWeather.humidity}%</div>
+            </div>
+            <div className="bg-green-50 p-2 rounded text-center">
+              <div className="text-xl mb-1">💨</div>
+              <div className="text-xs text-gray-600">Wind</div>
+              <div className="font-semibold">{locationWeather.windSpeed} km/h</div>
+            </div>
+          </div>
+          <button
+            onClick={() => setShowWeatherDetail(false)}
+            className="w-full mt-2 bg-blue-600 text-white py-2 rounded-lg"
+          >
+            Close
+          </button>
         </div>
       )}
     </>

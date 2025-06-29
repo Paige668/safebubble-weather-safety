@@ -38,6 +38,8 @@ This will start:
 - Frontend (React): http://localhost:3000
 - Backend (Express): http://localhost:5000
 
+You can also access the app from your phone's browser if it's on the same WiFi network.
+
 ## Tech Stack
 
 ### Frontend

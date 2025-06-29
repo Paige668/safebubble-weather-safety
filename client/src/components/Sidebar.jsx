@@ -31,13 +31,14 @@ const Sidebar = ({ onClose }) => {
 
 
   return (
-    <div className="h-full flex flex-col bg-white">
+    <div className="h-full flex flex-col bg-white w-full max-w-sm lg:max-w-md">
       {/* Header */}
       <div className="p-4 border-b border-gray-200 flex items-center justify-between">
         <h2 className="text-xl font-semibold text-gray-800">SafeBubble</h2>
         <button 
           onClick={onClose}
           className="p-2 hover:bg-gray-100 rounded-full lg:hidden"
+          aria-label="Close sidebar"
         >
           <XMarkIcon className="w-5 h-5" />
         </button>
@@ -45,10 +46,10 @@ const Sidebar = ({ onClose }) => {
 
       {/* Controls */}
       <div className="p-4 border-b border-gray-200">
-        <div className="flex flex-col sm:flex-row gap-2 mb-4">
+        <div className="flex flex-col gap-2 mb-4">
           <button 
             onClick={() => setShowForm(true)}
-            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+            className="flex items-center justify-center gap-2 px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
           >
             <PlusIcon className="w-4 h-4" />
             Add Location
@@ -56,7 +57,7 @@ const Sidebar = ({ onClose }) => {
           <button 
             onClick={handleWeatherUpdate}
             disabled={isLoading}
-            className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+            className="px-4 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 transition-colors"
           >
             {isLoading ? (
               <>
@@ -73,7 +74,7 @@ const Sidebar = ({ onClose }) => {
         <div className="flex flex-wrap gap-2">
           <button
             onClick={() => setFilter('all')}
-            className={`px-3 py-1 rounded text-sm ${
+            className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
               filter === 'all' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
             }`}
           >
@@ -83,7 +84,7 @@ const Sidebar = ({ onClose }) => {
             <button
               key={type}
               onClick={() => setFilter(type)}
-              className={`px-3 py-1 rounded text-sm capitalize ${
+              className={`px-3 py-2 rounded-lg text-sm font-medium capitalize transition-colors ${
                 filter === type ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
               }`}
             >
@@ -95,8 +96,8 @@ const Sidebar = ({ onClose }) => {
         {/* Update Success Message */}
         {showUpdateSuccess && (
           <div className="mt-3 p-3 bg-green-50 border border-green-200 rounded-lg flex items-center gap-2">
-            <CheckCircleIcon className="w-5 h-5 text-green-600" />
-            <div>
+            <CheckCircleIcon className="w-5 h-5 text-green-600 flex-shrink-0" />
+            <div className="min-w-0">
               <p className="text-sm font-medium text-green-800">Weather Updated Successfully!</p>
               <p className="text-xs text-green-600">
                 {weatherData.alerts?.length === 0 
@@ -108,10 +109,6 @@ const Sidebar = ({ onClose }) => {
           </div>
         )}
       </div>
-
-
-
-
 
       {/* Location List */}
       <div className="flex-1 overflow-y-auto p-4 space-y-3">
@@ -131,7 +128,7 @@ const Sidebar = ({ onClose }) => {
       {/* Location Form Modal */}
       {showForm && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg w-full max-w-md">
+          <div className="bg-white rounded-lg w-full max-w-md max-h-[90vh] overflow-y-auto">
             <LocationForm onClose={() => setShowForm(false)} />
           </div>
         </div>

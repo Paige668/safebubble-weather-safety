@@ -65,7 +65,7 @@ const getAlertEmoji = (type) => {
   return emojis[type] || '⚠️'
 }
 
-const MapView = ({ emergencyMode = false }) => {
+const MapView = ({ emergencyMode = false, isSidebarOpen = false }) => {
   const { locations } = useLocations();
   const { alerts } = useWeather();
   const [center, setCenter] = useState([39.8283, -98.5795]); // US center
@@ -117,7 +117,7 @@ const MapView = ({ emergencyMode = false }) => {
   }, [locations]);
 
   return (
-    <div className={`h-full w-full relative ${emergencyMode ? 'emergency-mode' : ''}`}>
+    <div className={`h-full w-full relative ${emergencyMode ? 'emergency-mode' : ''} ${isSidebarOpen ? 'map-sidebar-open' : ''}`}>
       {/* Emergency Mode Overlay */}
       {emergencyMode && (
         <div className="absolute top-0 left-0 right-0 z-50 bg-blue-600 text-white text-center py-3 font-bold text-lg shadow-lg">
@@ -198,22 +198,16 @@ const MapView = ({ emergencyMode = false }) => {
                     </span>
                   </div>
                   
-                  {/* Show all alerts in popup */}
-                  {hasAlerts && (
-                    <div className="mt-3 space-y-2">
-                      <h4 className="text-sm font-semibold text-red-700">Active Alerts:</h4>
-                      {locationAlerts.map((alert, index) => (
-                        <div key={index} className="p-2 bg-red-50 border border-red-200 rounded">
-                          <div className="flex items-center space-x-2 mb-1">
-                            <span>{getAlertEmoji(alert.type)}</span>
-                            <span className="text-sm font-medium text-red-800">{alert.title}</span>
-                          </div>
-                          <p className="text-xs text-red-700">{alert.description}</p>
-                          <p className="text-xs text-gray-600 mt-1">
-                            {alert.area.location} • {alert.area.radius}km radius
-                          </p>
-                        </div>
-                      ))}
+                  {hasAlerts && mostSevereAlert && (
+                    <div className="mt-3 p-3 bg-red-50 border border-red-200 rounded-lg">
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="text-lg">{getAlertEmoji(mostSevereAlert.type)}</span>
+                        <span className="font-semibold text-red-800">{mostSevereAlert.title}</span>
+                      </div>
+                      <p className="text-sm text-red-700">{mostSevereAlert.description}</p>
+                      <p className="text-xs text-red-600 mt-2">
+                        Location: {mostSevereAlert.area.location}
+                      </p>
                     </div>
                   )}
                 </div>
@@ -221,33 +215,81 @@ const MapView = ({ emergencyMode = false }) => {
             </Marker>
           )
         })}
+
+        {/* Weather Alert Areas */}
+        {alerts && alerts.map((alert) => (
+          <Marker
+            key={alert.id}
+            position={[alert.area.lat, alert.area.lng]}
+            icon={L.divIcon({
+              html: `
+                <div style="
+                  background: radial-gradient(circle, rgba(239, 68, 68, 0.3) 0%, rgba(239, 68, 68, 0.1) 70%);
+                  width: ${alert.area.radius * 2}px;
+                  height: ${alert.area.radius * 2}px;
+                  border: 2px solid rgba(239, 68, 68, 0.6);
+                  border-radius: 50%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-size: 24px;
+                  animation: pulse-alert 2s infinite;
+                ">
+                  ${getAlertEmoji(alert.type)}
+                </div>
+              `,
+              className: 'weather-alert-marker',
+              iconSize: [alert.area.radius * 2, alert.area.radius * 2],
+              iconAnchor: [alert.area.radius, alert.area.radius]
+            })}
+          >
+            <Popup>
+              <div className="p-3">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-2xl">{getAlertEmoji(alert.type)}</span>
+                  <div>
+                    <h3 className="font-bold text-lg">{alert.title}</h3>
+                    <p className="text-sm text-gray-600">{alert.area.location}</p>
+                  </div>
+                </div>
+                <p className="text-sm mb-2">{alert.description}</p>
+                <div className="flex items-center justify-between text-xs text-gray-500">
+                  <span>Severity: {alert.severity}</span>
+                  <span>Radius: {alert.area.radius}km</span>
+                </div>
+              </div>
+            </Popup>
+          </Marker>
+        ))}
       </MapContainer>
       
       {/* Risk Level Legend */}
-      <div 
-        className={`absolute ${emergencyMode ? 'bottom-6 left-6' : 'bottom-4 left-4'} z-[1000] bg-white rounded-lg shadow-lg border border-gray-200 p-3 ${emergencyMode ? 'border-2 border-blue-300' : ''}`} 
-        style={{
-          zIndex: 1000,
-          position: 'absolute',
-          pointerEvents: 'auto'
-        }}
-      >
-        <h4 className={`text-sm font-semibold mb-2 ${emergencyMode ? 'text-blue-800' : 'text-gray-700'}`}>Risk Level</h4>
-        <div className="space-y-2">
-          <div className="flex items-center gap-2">
-            <div className="w-4 h-4 bg-green-500 rounded-full border-2 border-white shadow-sm"></div>
-            <span className="text-xs text-gray-600">Safe</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-4 h-4 bg-yellow-500 rounded-full border-2 border-white shadow-sm"></div>
-            <span className="text-xs text-gray-600">Medium Risk</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-4 h-4 bg-red-500 rounded-full border-2 border-white shadow-sm"></div>
-            <span className="text-xs text-gray-600">High Risk</span>
+      {!isSidebarOpen && (
+        <div 
+          className={`absolute ${emergencyMode ? 'bottom-6 left-6' : 'bottom-4 left-4'} z-[40] bg-white rounded-lg shadow-lg border border-gray-200 p-3 ${emergencyMode ? 'border-2 border-blue-300' : ''}`} 
+          style={{
+            zIndex: 40,
+            position: 'absolute',
+            pointerEvents: 'auto'
+          }}
+        >
+          <h4 className={`text-sm font-semibold mb-2 ${emergencyMode ? 'text-blue-800' : 'text-gray-700'}`}>Risk Level</h4>
+          <div className="space-y-2">
+            <div className="flex items-center gap-2">
+              <div className="w-4 h-4 bg-green-500 rounded-full border-2 border-white shadow-sm"></div>
+              <span className="text-xs text-gray-600">Safe</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-4 h-4 bg-yellow-500 rounded-full border-2 border-white shadow-sm"></div>
+              <span className="text-xs text-gray-600">Medium Risk</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-4 h-4 bg-red-500 rounded-full border-2 border-white shadow-sm"></div>
+              <span className="text-xs text-gray-600">High Risk</span>
+            </div>
           </div>
         </div>
-      </div>
+      )}
       
       {/* Emergency Mode Border */}
       {emergencyMode && (

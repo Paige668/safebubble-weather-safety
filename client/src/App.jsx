@@ -9,6 +9,19 @@ function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const [emergencyMode, setEmergencyMode] = useState(false)
 
+  // Control body scroll when sidebar is open on mobile
+  useEffect(() => {
+    if (isSidebarOpen) {
+      document.body.classList.add('sidebar-open')
+    } else {
+      document.body.classList.remove('sidebar-open')
+    }
+
+    return () => {
+      document.body.classList.remove('sidebar-open')
+    }
+  }, [isSidebarOpen])
+
   return (
     <LocationProvider>
       <WeatherProvider>
@@ -20,10 +33,10 @@ function App() {
           />
           
           <div className="flex-1 flex relative">
-            {/* Sidebar */}
+            {/* Sidebar - Mobile overlay, Desktop side-by-side */}
             <div className={`
-              fixed inset-y-0 left-0 z-50 w-80 bg-white shadow-lg transform transition-transform duration-300 ease-in-out
-              lg:relative lg:translate-x-0 
+              fixed inset-y-0 left-0 z-50 w-80 bg-white shadow-lg transform transition-transform duration-300 ease-in-out sidebar-transition
+              lg:relative lg:translate-x-0 lg:z-auto
               ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
             `}>
               <Sidebar onClose={() => setIsSidebarOpen(false)} />
@@ -32,14 +45,14 @@ function App() {
             {/* Overlay for mobile */}
             {isSidebarOpen && (
               <div 
-                className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
+                className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden sidebar-overlay"
                 onClick={() => setIsSidebarOpen(false)}
               />
             )}
 
-            {/* Map */}
-            <div className="flex-1">
-              <MapView emergencyMode={emergencyMode} />
+            {/* Map - Full width on mobile, remaining space on desktop */}
+            <div className={`flex-1 w-full lg:w-auto ${isSidebarOpen ? 'lg:ml-0' : ''}`}>
+              <MapView emergencyMode={emergencyMode} isSidebarOpen={isSidebarOpen} />
             </div>
           </div>
         </div>
