@@ -32,9 +32,8 @@ const Sidebar = ({ onClose }) => {
 
   return (
     <div className="h-full flex flex-col bg-white w-full max-w-sm lg:max-w-md">
-      {/* Header */}
-      <div className="p-4 border-b border-gray-200 flex items-center justify-between">
-        <h2 className="text-xl font-semibold text-gray-800">SafeBubble</h2>
+      {/* Header (only close button for mobile) */}
+      <div className="p-4 border-b border-gray-200 flex items-center justify-end">
         <button 
           onClick={onClose}
           className="p-2 hover:bg-gray-100 rounded-full lg:hidden"

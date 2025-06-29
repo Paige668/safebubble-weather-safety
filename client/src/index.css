@@ -258,4 +258,58 @@ body {
   .sidebar-transition {
     z-index: 50 !important;
   }
+}
+
+/* MapView container should be relative for absolute positioning of controls */
+.mapview-relative {
+  position: relative !important;
+}
+
+/* Absolute position for Leaflet zoom control inside map */
+.leaflet-control-zoom {
+  position: absolute !important;
+  top: 24px !important;
+  left: 24px !important;
+  z-index: 1000 !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  border-radius: 12px;
+}
+
+/* Absolute position for Risk Level legend inside map */
+.risk-level-legend-fixed {
+  position: absolute !important;
+  left: 24px !important;
+  bottom: 24px !important;
+  z-index: 1000 !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  border-radius: 12px;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.h-full {
+  height: 100% !important;
+}
+
+.w-full {
+  width: 100% !important;
+}
+
+.leaflet-container {
+  height: 100% !important;
+  width: 100% !important;
+  min-height: 100% !important;
+  min-width: 100% !important;
+}
+
+/* Remove 100vh usage for mobile, use 100% height instead */
+@media (max-width: 1023px) {
+  .leaflet-container {
+    height: 100% !important;
+    width: 100% !important;
+  }
 } 

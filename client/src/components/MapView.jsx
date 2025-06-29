@@ -117,7 +117,7 @@ const MapView = ({ emergencyMode = false, isSidebarOpen = false }) => {
   }, [locations]);
 
   return (
-    <div className={`h-full w-full relative ${emergencyMode ? 'emergency-mode' : ''} ${isSidebarOpen ? 'map-sidebar-open' : ''}`}>
+    <div className={`h-full w-full mapview-relative ${emergencyMode ? 'emergency-mode' : ''} ${isSidebarOpen ? 'map-sidebar-open' : ''}`}>
       {/* Emergency Mode Overlay */}
       {emergencyMode && (
         <div className="absolute top-0 left-0 right-0 z-50 bg-blue-600 text-white text-center py-3 font-bold text-lg shadow-lg">
@@ -266,12 +266,8 @@ const MapView = ({ emergencyMode = false, isSidebarOpen = false }) => {
       {/* Risk Level Legend */}
       {!isSidebarOpen && (
         <div 
-          className={`absolute ${emergencyMode ? 'bottom-6 left-6' : 'bottom-4 left-4'} z-[40] bg-white rounded-lg shadow-lg border border-gray-200 p-3 ${emergencyMode ? 'border-2 border-blue-300' : ''}`} 
-          style={{
-            zIndex: 40,
-            position: 'absolute',
-            pointerEvents: 'auto'
-          }}
+          className={`risk-level-legend-fixed bg-white rounded-lg shadow-lg border border-gray-200 p-3 ${emergencyMode ? 'border-2 border-blue-300' : ''}`}
+          style={{ pointerEvents: 'auto' }}
         >
           <h4 className={`text-sm font-semibold mb-2 ${emergencyMode ? 'text-blue-800' : 'text-gray-700'}`}>Risk Level</h4>
           <div className="space-y-2">
