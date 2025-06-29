@@ -1,0 +1,19 @@
+{
+  "name": "safebubble-app",
+  "version": "1.0.0",
+  "description": "SafeBubble - Unified emergency monitoring solution that keeps your loved ones safe",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:client\" \"npm run dev:server\"",
+    "dev:client": "cd client && npm run dev",
+    "dev:server": "cd server && npm run dev",
+    "install:all": "npm install && cd client && npm install && cd ../server && npm install",
+    "build": "cd client && npm run build",
+    "start": "cd server && npm start"
+  },
+  "keywords": ["weather", "safety", "emergency", "location", "radar"],
+  "author": "SafeBubble Team",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+} 
