@@ -1,6 +1,6 @@
 # SafeBubble - Business Pitch
 
-## 🎯 The Problem (30 seconds)
+## The Problem (30 seconds)
 
 **"During Hurricane Ida, my friend spent 2 hours switching between 4 different apps trying to check on family members while tracking the storm's path."**
 
@@ -9,7 +9,7 @@
 - **Critical time is lost** switching between apps when every second counts
 - **No unified view** of who is safe and who is at risk
 
-## 💡 Our Solution (45 seconds)
+## Our Solution (45 seconds)
 
 **SafeBubble** - The first unified platform combining real-time location tracking with multi-hazard monitoring.
 
@@ -19,7 +19,7 @@
 - **Emergency-Optimized**: Designed for high-stress situations with large buttons, clear colors
 - **Multi-Hazard Intelligence**: Weather, earthquakes, traffic, even political unrest
 
-## 🚀 Live Demo (2-3 minutes)
+## Live Demo (2-3 minutes)
 
 ### Demo Flow:
 1. **Open SafeBubble** - Clean, map-centric interface
@@ -36,7 +36,7 @@
 - **One-Click Emergency Mode**: Entire interface optimizes for crisis use
 - **Persistent Data**: Locations saved locally, works offline
 
-## 🏢 Market Opportunity (30 seconds)
+## Market Opportunity (30 seconds)
 
 ### Target Markets:
 - **Primary**: Dispersed families (25M households, $2.5B market)
@@ -48,7 +48,7 @@
 - **Enterprise**: Custom solutions starting at $50/user/month
 - **API Licensing**: Location intelligence to insurance, logistics companies
 
-## 🔥 What Makes Us Different (45 seconds)
+## What Makes Us Different (45 seconds)
 
 ### vs. Existing Solutions:
 
@@ -62,12 +62,12 @@
 - **Emergency UX**: Designed for high-stress situations
 - **Multi-Modal Alerts**: Push, SMS, email, even automated calls
 
-## 🚀 Traction & Next Steps (30 seconds)
+## Traction & Next Steps (30 seconds)
 
 ### Current Status:
-- ✅ **MVP Built**: Core functionality demonstrated today
-- ✅ **Real APIs Identified**: OpenWeatherMap, USGS, traffic APIs ready to integrate
-- ✅ **Emergency UX Validated**: Tested with first responders
+- **MVP Built**: Core functionality demonstrated today
+- **Real APIs Identified**: OpenWeatherMap, USGS, traffic APIs ready to integrate
+- **Emergency UX Validated**: Tested with first responders
 
 ### 90-Day Roadmap:
 1. **Month 1**: Real API integration, push notifications
@@ -80,7 +80,7 @@
 - **$100K**: Marketing and user acquisition
 - **$50K**: Legal, compliance, insurance
 
-## 💰 Business Model Deep Dive
+## Business Model Deep Dive
 
 ### Freemium Pricing:
 - **Free**: 3 locations, basic weather alerts
@@ -97,7 +97,7 @@
 - **LTV**: $120 (average 2-year retention)
 - **LTV/CAC**: 8:1 (sustainable growth)
 
-## 🎯 Investment Thesis
+## Investment Thesis
 
 ### Why Now?
 - **Post-COVID**: Families more dispersed than ever
@@ -111,7 +111,7 @@
 - **Design Thinking**: Emergency UX is our secret sauce
 - **Market Timing**: First-mover advantage in unified family safety
 
-## 🔮 Vision Statement
+## Vision Statement
 
 **"We envision a world where no family loses precious time during emergencies switching between apps, where parents know instantly if their children are safe, and where emergency response starts before the crisis hits."**
 
